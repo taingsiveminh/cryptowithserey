@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ថ្នាក់បង្រៀនគ្រីបតូ - Crypto Training</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Basic Styling and Transitions */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+        }
+
+        /* Animated Background Elements */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            left: 70%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            left: 40%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Navbar Enhancements */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Hero Section Enhancements */
+        .hero-section {
+            /* Updated background image */
+            background: url('bc4.jpg') no-repeat center center/cover;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            z-index: -1;
+        }
+
+        .hero-section h1 {
+            animation: slideInDown 1s ease-out;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section p {
+            animation: slideInUp 1s ease-out 0.3s both;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section .btn {
+            animation: bounceIn 1s ease-out 0.6s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Keyframe Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+            40% {
+                transform: scale3d(.9, .9, .9);
+            }
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+            80% {
+                transform: scale3d(.97, .97, .97);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        /* Enhanced Button Styles */
+        .btn {
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Glass Card Effects */
+        .card {
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Section Backgrounds */
+        section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        section:nth-child(odd) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        section:nth-child(odd) .card {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Circle Step Enhancements */
+        .circle-step {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .circle-step::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite 0.5s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Social Icons Enhancement */
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+            background: var(--secondary-gradient);
+        }
+
+        /* Gallery Enhancements */
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Video styling */
+        .video-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Icon Animations */
+        .fa-handshake, .fa-dollar-sign, .fa-headset, 
+        .fa-globe-americas, .fa-lock, .fa-chart-line, .fa-briefcase {
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .fa-dollar-sign { animation-delay: 0.5s; }
+        .fa-headset { animation-delay: 1s; }
+        .fa-globe-americas { animation-delay: 1.5s; }
+        .fa-lock { animation-delay: 2s; }
+        .fa-chart-line { animation-delay: 2.5s; }
+        .fa-briefcase { animation-delay: 3s; }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Enhanced Dark Section */
+        .bg-dark {
+            background: var(--dark-gradient) !important;
+            position: relative;
+        }
+
+        .bg-dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Testimonials Enhancement */
+        .blockquote {
+            position: relative;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        .blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            color: rgba(102, 126, 234, 0.3);
+            font-family: serif;
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Enhancements */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section .btn-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .circle-step {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .social-icons a {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                margin: 0 5px;
+            }
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Glow Effects */
+        .glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="56">
+
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-glow" href="#hero">Crypto Learning</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero" data-nav-km="ទំព័រដើម" data-nav-en="Home">ទំព័រដើម</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about-us" data-nav-km="អំពីយើង" data-nav-en="About Us">អំពីយើង</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services" data-nav-km="សេវាកម្ម" data-nav-en="Services">សេវាកម្ម</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses" data-nav-km="វគ្គសិក្សា" data-nav-en="Courses">វគ្គសិក្សា</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#gallery" data-nav-km="រូបភាព" data-nav-en="Gallery">រូបភាព</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#videos" data-nav-km="វីដេអូ" data-nav-en="Videos">វីដេអូ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-nav-km="ទំនាក់ទំនង" data-nav-en="Contact">ទំនាក់ទំនង</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="current-lang-text">ភាសាខ្មែរ</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('km')">ភាសាខ្មែរ</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">English</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white text-center d-flex align-items-center parallax" id="hero">
+        <div class="container">
+            <!-- Using data-lang attributes for text translation -->
+            <h1 class="display-3 fw-bold text-glow" data-lang-km="🚀 អនាគតលុយកាក់ចាប់ផ្ដើមនៅទីនេះ" data-lang-en="🚀 The Future of Money Starts Here"></h1>
+            <p class="lead mt-3 mb-4" data-lang-km="រៀន វិនិយោគ និងរីកចម្រើនជាមួយគ្រីបតូ។ យើងធ្វើឱ្យហិរញ្ញវត្ថុឌីជីថលងាយស្រួល សុវត្ថិភាព និងអាចរកប្រាក់ចំណេញសម្រាប់អ្នកគ្រប់គ្នា។" data-lang-en="Learn, invest, and grow with crypto. We make digital finance simple, safe, and profitable for everyone."></p>
+            <a href="#courses" class="btn btn-primary btn-lg me-2 glow" data-lang-km="👉 ចុះឈ្មោះសម្រាប់វគ្គសិក្សា" data-lang-en="👉 Join Our Training"></a>
+            <a href="#affiliate" class="btn btn-outline-light btn-lg" data-lang-km="👉 ចាប់ផ្តើមរកប្រាក់ចំណូល" data-lang-en="👉 Start Earning in Crypto"></a>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section class="py-5" id="about-us">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0 loading">
+                    <img src="bc1.jpg" class="img-fluid rounded-3 shadow-lg" alt="About Us">
+                </div>
+                <div class="col-md-6 loading">
+                    <h2 class="mb-3 text-glow" data-lang-km="អំពីយើង" data-lang-en="About Us"></h2>
+                    <p data-lang-km="យើងខ្ញុំជាក្រុមអ្នកជំនាញដែលលះបង់ដើម្បីផ្តល់ចំណេះដឹងគ្រីបតូ និងការណែនាំអំពីការវិនិយោគ។ គោលដៅរបស់យើងគឺដើម្បីជួយអ្នកចូលរួមក្នុងពិភពវិមជ្ឈការនៃគ្រីបតូប្រកបដោយទំនុកចិត្ត និងសុវត្ថិភាព។" data-lang-en="We are a team of experts dedicated to providing trusted crypto knowledge and investment guidance. Our goal is to help you navigate the decentralized world of crypto with confidence and security."></p>
+                    <p data-lang-km="យើងជឿជាក់លើការអប់រំ និងការផ្តល់អំណាចដល់បុគ្គលម្នាក់ៗ។ វគ្គសិក្សារបស់យើងត្រូវបានបង្កើតឡើងសម្រាប់អ្នកចាប់ផ្តើមដំបូងរហូតដល់អ្នកវិនិយោគកម្រិតខ្ពស់។" data-lang-en="We believe in education and empowering individuals. Our courses are designed for everyone from beginners to advanced investors."></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5 bg-light" id="services">
+        <div class="container">
+            <h2 class="text-center mb-5 text-glow" data-lang-km="🛠️ សេវាកម្មរបស់យើង" data-lang-en="🛠️ Our Services"></h2>
+            <div class="row text-center g-4">
+                <div class="col-md-4 loading">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-dollar-sign fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title" data-lang-km="ការប្រឹក្សាការវិនិយោគ" data-lang-en="Investment Consulting"></h5>
+                            <p class="card-text" data-lang-km="ទទួលបានការណែនាំផ្ទាល់ខ្លួនសម្រាប់ការវិនិយោគគ្រីបតូរបស់អ្នក។" data-lang-en="Get personalized guidance for your crypto investments."></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 loading">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title" data-lang-km="ការគាំទ្រ ២៤/៧" data-lang-en="24/7 Support"></h5>
+                            <p class="card-text" data-lang-km="យើងនៅទីនេះដើម្បីជួយអ្នករាល់ពេលដែលអ្នកត្រូវការ។" data-lang-en="We are here to help you whenever you need us."></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 loading">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-globe-americas fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title" data-lang-km="ថ្នាក់រៀនអនឡាញ" data-lang-en="Online Classes"></h5>
+                            <p class="card-text" data-lang-km="ចូលរួមវគ្គបណ្តុះបណ្តាលពីចម្ងាយរបស់យើងពីគ្រប់ទីកន្លែងក្នុងពិភពលោក។" data-lang-en="Join our remote training sessions from anywhere in the world."></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="py-5" id="courses">
+        <div class="container">
+            <h2 class="text-center mb-5 text-glow" data-lang-km="🎓 វគ្គសិក្សារបស់យើង" data-lang-en="🎓 Our Courses"></h2>
+            <div class="row text-center g-4">
+                 <!-- Beginner Class -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0 loading">
+                        <div class="card-body">
+                            <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title" data-lang-km="ថ្នាក់មូលដ្ឋាន (វគ្គ Beginner)" data-lang-en="Beginner Class"></h5>
+                            <p class="card-text fs-4" data-lang-km="ចាប់ផ្តើមត្រឹមតែ $99" data-lang-en="Starting at only $99"></p>
+                            <p class="card-text"><small data-lang-km="យល់ដឹងទូទៅពីគ្រីបតូ របៀបទិញលក់ របៀបរក្សាលុយឱ្យមានសុវត្ថិភាព។" data-lang-en="General understanding of crypto, how to trade, and how to keep your money safe."></small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-outline-light mt-3 glow" data-lang-km="ចុះឈ្មោះ" data-lang-en="Register Now"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- VIP Signal Class -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0 loading">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                            <h4 class="card-title mb-3" data-lang-km="ថ្នាក់ Signal VIP" data-lang-en="VIP Signal Class"></h4>
+                            <p class="card-text fs-4">$3999</p>
+                            <p class="card-text"><small data-lang-km="ណែនាំកាក់ដែលត្រូវទិញ និង តាមដាន ទុនមធ្យមក្រោម $10,000" data-lang-en="Recommend coins to buy and monitor, for capital under $10,000."></small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-outline-light mt-3 glow" data-lang-km="ចុះឈ្មោះ" data-lang-en="Register Now"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Advanced Course -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0 loading">
+                        <div class="card-body text-center">
+                            <i class="fas fa-briefcase fa-3x text-primary mb-3"></i>
+                            <h4 class="card-title mb-3" data-lang-km="ថ្នាក់សំខាន់ (វគ្គ Advance)" data-lang-en="Advanced Class"></h4>
+                            <p class="card-text fs-4">$9999</p>
+                            <p class="card-text"><small data-lang-km="វិធីសាស្រ្តទិញលក់ខ្នាតធំក្នុងគ្រីបតូ ទុន $10,000 ឡើង" data-lang-en="Large-scale trading methods, for capital of $10,000 and above."></small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-outline-light mt-3 glow" data-lang-km="ចុះឈ្មោះ" data-lang-en="Register Now"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Investment Consulting Section -->
+            <h3 class="text-center mt-5 mb-4 text-glow" data-lang-km="កញ្ចប់ប្រឹក្សាវិនិយោគ" data-lang-en="Investment Consulting Packages"></h3>
+            <p class="text-center fst-italic" data-lang-km="បញ្ជាក់៖ ខាងយើងខ្ញុំជាសេវាប្រឹក្សា មិនទទួលកាន់លុយវិនិយោគរបស់ភ្ញៀវទេ" data-lang-en="Note: We are a consulting service, we do not handle client investment funds."></p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 bg-dark text-white border border-primary shadow-lg loading">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" data-lang-km="កញ្ចប់ទី ១" data-lang-en="Package 1"></h5>
+                            <p class="card-text" data-lang-km="សម្រាប់វិនិយោគ $20,000 ដល់ $50,000" data-lang-en="For investments from $20,000 to $50,000."></p>
+                            <p class="card-text fw-bold fs-5">$10,000 <small class="text-muted">(Lifetime support)</small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-primary mt-3 glow" data-lang-km="ព័ត៌មានបន្ថែម" data-lang-en="More Info"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 bg-dark text-white border border-primary shadow-lg loading">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" data-lang-km="កញ្ចប់ទី ២" data-lang-en="Package 2"></h5>
+                            <p class="card-text" data-lang-km="សម្រាប់វិនិយោគ $50,000 ដល់ $100,000" data-lang-en="For investments from $50,000 to $100,000."></p>
+                            <p class="card-text fw-bold fs-5">$29,999 <small class="text-muted">(Lifetime support)</small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-primary mt-3 glow" data-lang-km="ព័ត៌មានបន្ថែម" data-lang-en="More Info"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 bg-dark text-white border border-primary shadow-lg loading">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" data-lang-km="កញ្ចប់ទី ៣" data-lang-en="Package 3"></h5>
+                            <p class="card-text" data-lang-km="សម្រាប់វិនិយោគ $100,000 ដល់ $500,000" data-lang-en="For investments from $100,000 to $500,000."></p>
+                            <p class="card-text fw-bold fs-5">$59,999 <small class="text-muted">(Lifetime support)</small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-primary mt-3 glow" data-lang-km="ព័ត៌មានបន្ថែម" data-lang-en="More Info"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 bg-dark text-white border border-primary shadow-lg loading">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" data-lang-km="កញ្ចប់ទី ៤" data-lang-en="Package 4"></h5>
+                            <p class="card-text" data-lang-km="សម្រាប់វិនិយោគ $200,000 ដល់ $500,000" data-lang-en="For investments from $200,000 to $500,000."></p>
+                            <p class="card-text fw-bold fs-5">$99,999 <small class="text-muted">(Lifetime support)</small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-primary mt-3 glow" data-lang-km="ព័ត៌មានបន្ថែម" data-lang-en="More Info"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 bg-dark text-white border border-primary shadow-lg loading">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" data-lang-km="កញ្ចប់ទី ៥" data-lang-en="Package 5"></h5>
+                            <p class="card-text" data-lang-km="សម្រាប់វិនិយោគ $500,000 ដល់ $1,000,000" data-lang-en="For investments from $500,000 to $1,000,000."></p>
+                            <p class="card-text fw-bold fs-5">$189,999 <small class="text-muted">(Lifetime support)</small></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-primary mt-3 glow" data-lang-km="ព័ត៌មានបន្ថែម" data-lang-en="More Info"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 bg-dark text-white border border-primary shadow-lg loading">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" data-lang-km="កញ្ចប់ទី ៦" data-lang-en="Package 6"></h5>
+                            <p class="card-text" data-lang-km="សម្រាប់វិនិយោគពី $1,000,000 ឡើង" data-lang-en="For investments from $1,000,000 and above."></p>
+                            <p class="card-text fw-bold fs-5" data-lang-km="សេវា បូក% វិភាគតាមជាក់ស្តែង" data-lang-en="Fee + % analyzed based on actual situation."></p>
+                            <a href="https://t.me/dubai_uae24" class="btn btn-primary mt-3 glow" data-lang-km="ព័ត៌មានបន្ថែម" data-lang-en="More Info"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center mt-5 mb-2 fst-italic" data-lang-km="⚠️ រក្សាសិទ្ធ ក្នុងការកែប្រែតំលៃ និង គោលការណ៏ដោយមិនជម្រាបជូនមុន" data-lang-en="⚠️ We reserve the right to change prices and policies without prior notice."></p>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5" id="how-it-works">
+        <div class="container">
+            <h2 class="text-center mb-5 text-glow" data-lang-km="🔄 របៀបដែលវាដំណើរការ (ជាជំហាន ៗ)" data-lang-en="🔄 How It Works (Step-by-Step)"></h2>
+            <div class="row text-center g-4">
+                <div class="col-md-6 col-lg-2 offset-lg-1 loading">
+                    <div class="circle-step mx-auto mb-3">1</div>
+                    <p data-lang-km="ចុះឈ្មោះចូលរៀន" data-lang-en="Sign up for training."></p>
+                </div>
+                <div class="col-md-6 col-lg-2 loading">
+                    <div class="circle-step mx-auto mb-3">2</div>
+                    <p data-lang-km="រៀនមូលដ្ឋានគ្រឹះ និងសុវត្ថិភាព" data-lang-en="Learn the basics of crypto & safety."></p>
+                </div>
+                <div class="col-md-6 col-lg-2 loading">
+                    <div class="circle-step mx-auto mb-3">3</div>
+                    <p data-lang-km="ចាប់ផ្ដើមវិនិយោគ" data-lang-en="Start investing."></p>
+                </div>
+                <div class="col-md-6 col-lg-2 loading">
+                    <div class="circle-step mx-auto mb-3">4</div>
+                    <p data-lang-km="តាមដានលទ្ធផល" data-lang-en="Monitor the results."></p>
+                </div>
+                <div class="col-md-6 col-lg-2 loading">
+                    <div class="circle-step mx-auto mb-3">5</div>
+                    <p data-lang-km="ទទួលការប្រឹក្សាពីក្រុមយើង" data-lang-en="Receive consulting from our team."></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="py-5 bg-light" id="gallery">
+        <div class="container">
+            <h2 class="text-center mb-5 text-glow" data-lang-km="🖼️ វិចិត្រសាលរូបភាព" data-lang-en="🖼️ Photo Gallery"></h2>
+            <div class="row g-4">
+                <div class="col-md-6 loading">
+                    <img src="bc1.jpg" alt="Gallery Image 1" class="img-fluid rounded-3 shadow-lg gallery-image">
+                </div>
+                <div class="col-md-6 loading">
+                    <img src="bc2.jpg" alt="Gallery Image 2" class="img-fluid rounded-3 shadow-lg gallery-image">
+                </div>
+                <div class="col-md-6 loading">
+                    <img src="bc3.jpg" alt="Gallery Image 3" class="img-fluid rounded-3 shadow-lg gallery-image">
+                </div>
+                <div class="col-md-6 loading">
+                    <img src="bc5.jpg" alt="Gallery Image 4" class="img-fluid rounded-3 shadow-lg gallery-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Section -->
+    <section class="py-5" id="videos">
+        <div class="container">
+            <h2 class="text-center mb-5 text-glow" data-lang-km="📹 វីដេអូ" data-lang-en="📹 Videos"></h2>
+            <div class="row g-4">
+                <div class="col-md-4 loading">
+                    <div class="video-container">
+                        <video controls class="w-100">
+                            <source src="v1.MP4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="col-md-4 loading">
+                    <div class="video-container">
+                        <video controls class="w-100">
+                            <source src="v3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="col-md-4 loading">
+                    <div class="video-container">
+                        <video controls class="w-100">
+                            <source src="v6.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social & Contact Section -->
+    <section class="py-5 bg-dark text-white" id="contact">
+        <div class="container text-center loading">
+            <h2 class="mb-4 text-glow" data-lang-km="☎️ ទំនាក់ទំនងយើង" data-lang-en="☎️ Contact Us"></h2>
+            <p class="lead" data-lang-km="យើងបើកជជែក។ ទាក់ទងយើងថ្ងៃនេះដើម្បីចាប់ផ្តើមផ្លូវគ្រីបតូរបស់អ្នក!" data-lang-en="We're open for a chat. Reach out today to start your crypto journey!"></p>
+            
+            <!-- Community Section -->
+            <div class="mt-5 mb-4">
+                <h4 class="mb-3 text-glow" data-lang-km="🤝 ចូលរួមសហគមន៍របស់យើង" data-lang-en="🤝 Join Our Community"></h4>
+                <p data-lang-km="ភ្ជាប់ជាមួយសហគមន៍សិក្សា និងវិនិយោគគ្រីបតូរបស់យើង" data-lang-en="Connect with our learning and crypto investment community"></p>
+            </div>
+            
+            <div class="social-icons mt-4">
+                <a href="https://t.me/+GEXBvrZyCeIwMzQ0" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram Group">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://www.facebook.com/share/19tj99VTYh/?mibextid=wwXIfr" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook Page">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/cryptowithmeserey?igsh=MXRucTJseW9iejg4cw%3D%3D&utm_source=qr" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@Cryptowithmeserey" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@cryptowithmeserey?_t=ZS-8z1jMdLZoC9&_r=1" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            <p class="text-center mt-4">
+                <a href="https://t.me/+GEXBvrZyCeIwMzQ0" class="btn btn-primary glow" data-lang-km="ចូលរួមឥឡូវនេះ / Join Now" data-lang-en="Join Now"></a>
+            </p>
+
+            <p class="text-center mt-4">
+                <a href="https://wa.me/971561693389" class="btn btn-success glow" data-lang-km="ចុចដើម្បីផ្ញើសារឥឡូវនេះ" data-lang-en="Click to message now">
+                    <i class="fab fa-whatsapp me-2"></i><span data-lang-km="ចុចដើម្បីផ្ញើសារឥឡូវនេះ" data-lang-en="Click to message now">ចុចដើម្បីផ្ញើសារឥឡូវនេះ</span>
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer section or script tags go here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to set language based on selection
+            window.setLanguage = function(lang) {
+                document.querySelectorAll('[data-lang-km], [data-lang-en]').forEach(el => {
+                    if (lang === 'km' && el.dataset.langKm) {
+                        el.textContent = el.dataset.langKm;
+                    } else if (lang === 'en' && el.dataset.langEn) {
+                        el.textContent = el.dataset.langEn;
+                    }
+                });
+                document.getElementById('current-lang-text').textContent = lang === 'km' ? 'ភាសាខ្មែរ' : 'English';
+            };
+
+            // Set initial language
+            setLanguage('km');
+
+            // Add loading animation to all sections
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.loading').forEach(el => {
+                            el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                            el.style.opacity = '1';
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
