@@ -197,12 +197,17 @@
         url('bc10.jpg') no-repeat center center;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
     position: relative;
     display: flex;
     align-items: center;
     color: rgba(255, 255, 255, 0.528);
     overflow: hidden;
+}
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll;
+    }
 }
 
 
@@ -911,7 +916,7 @@
         <div class="container">
             <a class="navbar-brand" href="#hero">
                 <i class="fas fa-coins me-2"></i>
-                <span data-lang-km="Crypto with serey" data-lang-en="Crypto Academy">Crypto Academy</span>
+                <span data-lang-km="Cryptowithserey" data-lang-en="Crypto Academy">Crypto Academy</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -957,6 +962,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 hero-content">
+                
                 <h1 class="hero-title" 
                     data-lang-km="🚀 អនាគតលុយកាក់ចាប់ផ្ដើមនៅទីនេះ" 
                     data-lang-en="🚀 Elite Crypto Academy">
